@@ -14,23 +14,28 @@ function divide(a, b) {
   return a / b;
 }
 function operate() {
-  let result;
-  num1 = Number(num1);
-  num2 = Number(num2)
-  if (operator == '+') {
-    result = add(num1, num2);
+  if (num2 !== undefined) {
+    let result;
+    num1 = Number(num1);
+    num2 = Number(num2)
+    if (operator == '+') {
+      result = add(num1, num2);
+    }
+    else if (operator == '-') {
+      result = subtract(num1, num2);
+    }
+    else if (operator == '*') {
+      result = multiply(num1, num2);
+    }
+    else if (operator == '/') {
+      result = divide(num1, num2);
+    }
+    operator = undefined;
+    num1 = result;
+    num2 = undefined;
+    return result;
   }
-  else if (operator == '-') {
-    result = subtract(num1, num2);
-  }
-  else if (operator == '*') {
-    result = multiply(num1, num2);
-  }
-  else if (operator == '/') {
-    result = divide(num1, num2);
-  }
-  operator = undefined;
-  return result;
+
 
 }
 const number_buttons = document.querySelectorAll('.numbers button');
@@ -47,7 +52,7 @@ number_buttons.forEach(button => {
 
 function number_updater(new_num) {
   if (!operator) {
-    if (num1 == undefined) {
+    if (num1 === undefined) {
       num1 = new_num;
     }
     else {
@@ -56,20 +61,21 @@ function number_updater(new_num) {
     display.textContent = num1;;
   }
   else {
-    if (num2 == undefined) {
+    if (num2 === undefined) {
       num2 = new_num;
     }
     else {
       num2 = `${num2}${new_num}`;
     }
 
-  display.textContent = `${num1} ${operator} ${num2}`;
+    display.textContent = `${num1} ${operator} ${num2}`;
 
   }
 
 }
 
 operator_buttons.addEventListener('click', (event) => {
+  operate();
   operator = event.target.textContent;
   display.textContent = `${num1} ${operator} `;
 })
