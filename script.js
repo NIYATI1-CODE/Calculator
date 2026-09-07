@@ -1,29 +1,81 @@
-function add (a , b){
-  return a+b;
+let num1;
+let num2;
+let operator;
+function add(a, b) {
+  return a + b;
 }
-function subtract(a , b){
-  return a-b;
+function subtract(a, b) {
+  return a - b;
 }
-function multiply(a , b){
-  return a*b;
+function multiply(a, b) {
+  return a * b;
 }
-function divide (a , b){
-  return a/b;
+function divide(a, b) {
+  return a / b;
 }
-function operate(num1 , num2 , operator){
-  let result ;
-  if(operator == '+'){
-    result = add(num1 , num2);
+function operate() {
+  let result;
+  num1 = Number(num1);
+  num2 = Number(num2)
+  if (operator == '+') {
+    result = add(num1, num2);
   }
-  else if(operator == '-'){
-    result = subtract(num1 , num2);
+  else if (operator == '-') {
+    result = subtract(num1, num2);
   }
-  else if(operator == '*'){
-    result = multiply(num1 , num2);
+  else if (operator == '*') {
+    result = multiply(num1, num2);
   }
-  else if(operator == '/'){
-    result= divide(num1 , num2);
+  else if (operator == '/') {
+    result = divide(num1, num2);
   }
+  operator = undefined;
   return result;
 
 }
+const number_buttons = document.querySelectorAll('.numbers button');
+const display = document.querySelector('.display');
+const equal = document.querySelector('.equalTo');
+const operator_buttons = document.querySelector('.operators');
+
+number_buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    number_updater(button.textContent);
+  }
+  )
+})
+
+function number_updater(new_num) {
+  if (!operator) {
+    if (num1 == undefined) {
+      num1 = new_num;
+    }
+    else {
+      num1 = `${num1}${new_num}`;
+    }
+    display.textContent = num1;;
+  }
+  else {
+    if (num2 == undefined) {
+      num2 = new_num;
+    }
+    else {
+      num2 = `${num2}${new_num}`;
+    }
+
+  display.textContent = `${num1} ${operator} ${num2}`;
+
+  }
+
+}
+
+operator_buttons.addEventListener('click', (event) => {
+  operator = event.target.textContent;
+  display.textContent = `${num1} ${operator} `;
+})
+
+equal.addEventListener('click', () => {
+  let result = operate();
+  display.textContent = `Ans : ${result}`;
+
+})
