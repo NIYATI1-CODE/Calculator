@@ -33,7 +33,7 @@ function operate() {
     operator = undefined;
     num1 = result;
     num2 = undefined;
-    return result;
+    return Number(result.toFixed(4));
   }
 
 
@@ -81,7 +81,21 @@ operator_buttons.addEventListener('click', (event) => {
 })
 
 equal.addEventListener('click', () => {
-  let result = operate();
-  display.textContent = `Ans : ${result}`;
+  let displayedResult;
+  if (num2 !== undefined) {
+    displayedResult = operate();
+    display.textContent = `Ans : ${displayedResult0}`;
+
+  }
+  else if (num1 === undefined) {
+    display.textContent = `ERROR`;
+  }
+  else if(operator !== undefined){
+    display.textContent = `ERROR`;
+  }
+  else {
+    result = num1;
+    display.textContent = `${displayedResult} = ${displayedResult}`;
+  }
 
 })
