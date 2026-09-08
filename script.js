@@ -1,6 +1,8 @@
 let num1;
 let num2;
 let operator;
+let result;
+
 function add(a, b) {
   return a + b;
 }
@@ -15,7 +17,6 @@ function divide(a, b) {
 }
 function operate() {
   if (num2 !== undefined) {
-    let result;
     num1 = Number(num1);
     num2 = Number(num2);
     if (operator == '+') {
@@ -32,9 +33,9 @@ function operate() {
         result = divide(num1, num2);
       }
       else {
-        num1     = undefined
+        num1 = undefined
         operator = undefined
-        num2     = undefined
+        num2 = undefined
         return 'Nope , Nada , Naah...Cannot divide by Zero';
       }
     }
@@ -42,7 +43,6 @@ function operate() {
     operator = undefined;
     num2 = undefined;
     return Number(result.toFixed(5));
-
 
   }
 }
@@ -62,7 +62,7 @@ number_buttons.forEach(button => {
 
 function number_updater(new_num) {
   if (!operator) {
-    if (num1 === undefined) {
+    if (num1 === undefined || num1 == result) {
       num1 = new_num;
     }
     else {
@@ -115,5 +115,6 @@ clear.addEventListener('click', () => {
   num1 = undefined;
   num2 = undefined;
   operator = undefined;
+  result = undefined;
 }
 )
