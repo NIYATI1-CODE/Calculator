@@ -3,6 +3,13 @@ let num2;
 let operator;
 let result;
 
+const number_buttons = document.querySelectorAll('.numbers button');
+const display = document.querySelector('.display');
+const equal = document.querySelector('.equalTo');
+const operator_buttons = document.querySelector('.operators');
+const clear = document.querySelector('.clear');
+const decimal = document.querySelector('.decimal');
+
 function add(a, b) {
   return a + b;
 }
@@ -47,11 +54,6 @@ function operate() {
   }
 }
 
-const number_buttons = document.querySelectorAll('.numbers button');
-const display = document.querySelector('.display');
-const equal = document.querySelector('.equalTo');
-const operator_buttons = document.querySelector('.operators');
-const clear = document.querySelector('.clear');
 
 number_buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -116,5 +118,33 @@ clear.addEventListener('click', () => {
   num2 = undefined;
   operator = undefined;
   result = undefined;
+}
+)
+
+decimal.addEventListener('click', () => {
+  if (!operator) {
+    if (!num1.includes('.')) {
+      if (num1 == undefined) {
+        num1 = `0.`;
+        display.textContent = num1;
+      }
+      else {
+        num1 = `${num1}.`;
+        display.textContent = num1;
+      }
+    }
+  }
+  else {
+    if (!num2.includes('.')) {
+      if (num2 == undefined) {
+        num2 = `0.`;
+        display.textContent = num2;
+      }
+      else {
+        num2 = `${num2}.`;
+        display.textContent = `${num1} ${operator} ${num2}`;
+      }
+    }
+  }
 }
 )
