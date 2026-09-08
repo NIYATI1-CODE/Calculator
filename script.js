@@ -17,7 +17,7 @@ function operate() {
   if (num2 !== undefined) {
     let result;
     num1 = Number(num1);
-    num2 = Number(num2)
+    num2 = Number(num2);
     if (operator == '+') {
       result = add(num1, num2);
     }
@@ -28,20 +28,30 @@ function operate() {
       result = multiply(num1, num2);
     }
     else if (operator == '/') {
-      result = divide(num1, num2);
+      if (num2 !== 0) {
+        result = divide(num1, num2);
+      }
+      else {
+        num1     = undefined
+        operator = undefined
+        num2     = undefined
+        return 'Nope , Nada , Naah...Cannot divide by Zero';
+      }
     }
-    operator = undefined;
     num1 = result;
+    operator = undefined;
     num2 = undefined;
-    return Number(result.toFixed(4));
+    return Number(result.toFixed(5));
+
+
   }
-
-
 }
+
 const number_buttons = document.querySelectorAll('.numbers button');
 const display = document.querySelector('.display');
 const equal = document.querySelector('.equalTo');
 const operator_buttons = document.querySelector('.operators');
+const clear = document.querySelector('.clear');
 
 number_buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -84,13 +94,13 @@ equal.addEventListener('click', () => {
   let displayedResult;
   if (num2 !== undefined) {
     displayedResult = operate();
-    display.textContent = `Ans : ${displayedResult0}`;
+    display.textContent = `Ans : ${displayedResult}`;
 
   }
   else if (num1 === undefined) {
     display.textContent = `ERROR`;
   }
-  else if(operator !== undefined){
+  else if (operator !== undefined) {
     display.textContent = `ERROR`;
   }
   else {
@@ -99,3 +109,11 @@ equal.addEventListener('click', () => {
   }
 
 })
+
+clear.addEventListener('click', () => {
+  display.textContent = null;
+  num1 = undefined;
+  num2 = undefined;
+  operator = undefined;
+}
+)
