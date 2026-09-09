@@ -6,9 +6,10 @@ let result;
 const number_buttons = document.querySelectorAll('.numbers button');
 const display = document.querySelector('.display');
 const equal = document.querySelector('.equalTo');
-const operator_buttons = document.querySelector('.operators');
+const operator_buttons = document.querySelectorAll('.operators button');
 const clear = document.querySelector('.clear');
 const decimal = document.querySelector('.decimal');
+const backspace = document.querySelector('.backspace');
 
 function add(a, b) {
   return a + b;
@@ -65,7 +66,7 @@ number_buttons.forEach(button => {
 function number_updater(new_num) {
   if (!operator) {
     if (num1 === undefined || num1 == result) {
-      num1 = new_num;
+      num1 = `${new_num}`;
     }
     else {
       num1 = `${num1}${new_num}`;
@@ -74,7 +75,7 @@ function number_updater(new_num) {
   }
   else {
     if (num2 === undefined) {
-      num2 = new_num;
+      num2 = `${new_num}`;
     }
     else {
       num2 = `${num2}${new_num}`;
@@ -86,10 +87,12 @@ function number_updater(new_num) {
 
 }
 
-operator_buttons.addEventListener('click', (event) => {
-  operate();
-  operator = event.target.textContent;
-  display.textContent = `${num1} ${operator} `;
+operator_buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    operate();
+    operator = button.textContent;
+    display.textContent = `${num1} ${operator}`;
+  })
 })
 
 equal.addEventListener('click', () => {
@@ -124,7 +127,7 @@ clear.addEventListener('click', () => {
 decimal.addEventListener('click', () => {
   if (!operator) {
     if (!num1.includes('.')) {
-      if (num1 == undefined) {
+      if (num1 === undefined) {
         num1 = `0.`;
         display.textContent = num1;
       }
@@ -136,7 +139,7 @@ decimal.addEventListener('click', () => {
   }
   else {
     if (!num2.includes('.')) {
-      if (num2 == undefined) {
+      if (num2 === undefined) {
         num2 = `0.`;
         display.textContent = num2;
       }
@@ -148,3 +151,25 @@ decimal.addEventListener('click', () => {
   }
 }
 )
+
+backspace.addEventListener('click', () => {
+  let displayedResult = display.textContent;
+  if (!operator) {
+    num1 = num1.slice(0, -1);
+    display.textContent = num1;
+  }
+  else if (displayedResult.indexOf(`${operator}`) === (displayedResult.length - 1)) {
+    operator = undefined;
+    display.textContent = num1;
+  }
+  else if (displayedResult.lastIndexOf(" ") === (displayedResult.length - 1)) {
+    display.textContent = displayedResult.slice(0, -1);
+  }
+  else if (num2 !== undefined) {
+    num2 = num2.slice(0, -1);
+    display.textContent = `${num1} ${operator} ${num2}`;
+    if (num2 == " ") {
+      num2 = undefined;
+    }
+  }
+})
