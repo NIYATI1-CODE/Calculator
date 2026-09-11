@@ -1,6 +1,6 @@
 # Calculator
 
-![Calculator Screenshot](./screenshot/Calculator.png)
+![Calculator Screenshot](./screenshot/calculator.png)
 
 This project focuses on practicing JavaScript fundamentals, DOM manipulation, event handling, and CSS layout/styling.
 
