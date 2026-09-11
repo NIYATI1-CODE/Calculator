@@ -28,7 +28,7 @@ body {
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
-  width: 460px;
+  width: 430px;
   height: 400px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
@@ -58,7 +58,7 @@ button:active {
 }
 
 #display {
-  width: 460px;
+  width: 430px;
   height: 45px;
   font-size: 26px;
   margin-top: 10px;
@@ -83,13 +83,13 @@ button:active {
 
 .controls {
   display: flex;
-  width: 572px;
+  width: 525px;
   margin-bottom: 12px;
 }
 
 .numDecEqual {
-  width: 360px;
-  margin-left: 10px;
+  width: 315px;
+  margin-left: 12.5px;
   gap: 12px;
   display: flex;
   flex-wrap: wrap;
@@ -104,13 +104,13 @@ button:active {
 }
 
 .operators button {
-  background-color: rgb(28, 40, 70)0;
+  background-color: rgb(28, 40, 70);
   font-size: 27px;
 
 }
 
 .utility {
-  margin-right: 80px;
+  margin-right: 35px;
   width: 370px;
   gap: 12px;
   display: flex;
