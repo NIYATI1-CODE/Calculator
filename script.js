@@ -89,7 +89,7 @@ function operate() {
         return 'Nope , Nada , Naah...Cannot divide by Zero';
       }
     }
-    num1 = result;
+    num1 = String(result);
     operator = undefined;
     num2 = undefined;
     percentageChecker = false;
@@ -102,7 +102,7 @@ function operate() {
     if (b == undefined) {
       result = a;
     }
-    num1 = result;
+    num1 = String(result);
     operator = undefined;
     num2 = undefined;
     percentageChecker = false;
@@ -178,7 +178,7 @@ function equalToOperation() {
   else if (operator !== undefined) {
     display.value = `ERROR`;
   }
-  
+
   else {
     displayedResult = num1;
     display.value = `${displayedResult} = ${displayedResult}`;
