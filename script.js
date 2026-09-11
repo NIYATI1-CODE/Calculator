@@ -4,8 +4,8 @@ let operator;
 let result;
 let percentageChecker;
 
-const number_buttons = document.querySelectorAll('.numbers button');
-const display = document.querySelector('.display');
+const number_buttons = document.querySelectorAll('.num');
+const display = document.querySelector('#display');
 const equal = document.querySelector('.equalTo');
 const operator_buttons = document.querySelectorAll('.operators button');
 const clear = document.querySelector('.clear');
@@ -163,12 +163,12 @@ function equalToOperation() {
   let displayedResult;
   if (percentageChecker) {
     displayedResult = operate()
-    display.value = `Ans : ${displayedResult}`;
+    display.value = `${displayedResult}`;
   }
 
   else if (num2 !== undefined) {
     displayedResult = operate();
-    display.value = `Ans : ${displayedResult}`;
+    display.value = `${displayedResult}`;
   }
 
   else if (num1 === undefined) {
